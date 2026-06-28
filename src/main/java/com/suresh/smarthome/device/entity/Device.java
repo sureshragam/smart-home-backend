@@ -52,10 +52,9 @@ public class Device extends BaseEntity {
     @Column(nullable = false)
     private MotionStatus motionStatus;
 
-    @Column(nullable = false)
     private String ipAddress;
 
-    private String wifiStrength;
+    private Integer wifiStrength;
 
     private String firmwareVersion;
 

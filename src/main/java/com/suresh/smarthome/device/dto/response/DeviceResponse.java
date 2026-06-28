@@ -22,7 +22,7 @@ public class DeviceResponse {
 
     private MotionStatus motion;
 
-    private String wifi;
+    private Integer wifi;
 
     private String ipAddress;
 

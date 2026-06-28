@@ -13,21 +13,42 @@ import com.suresh.smarthome.device.dto.request.DeviceHeartbeatRequest;
 import com.suresh.smarthome.device.dto.response.DeviceResponse;
 import com.suresh.smarthome.device.service.DeviceService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/devices")
 @RequiredArgsConstructor
+@Tag(
+    name = "Devices",
+    description = "APIs for managing smart home devices and receiving device heartbeats."
+)
 public class DeviceController {
 
     private final DeviceService deviceService;
 
+    @Operation(summary = "Get all registered devices")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Devices retrieved successfully")
+    })
     @GetMapping
     public List<DeviceResponse> getAllDevices() {
         return deviceService.getAllDevices();
     }
-    
+
+    @Operation(
+        summary = "Receive device heartbeat",
+        description = "Receives heartbeat information from an IoT device and updates its latest status, IP address, firmware version, Wi-Fi strength, and last seen timestamp."
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Heartbeat processed successfully"),
+        @ApiResponse(responseCode = "400", description = "Invalid heartbeat request"),
+        @ApiResponse(responseCode = "404", description = "Device not found")
+    })
     @PostMapping("/heartbeat")
     public ResponseEntity<Void> heartbeat(
             @Valid @RequestBody DeviceHeartbeatRequest request) {
