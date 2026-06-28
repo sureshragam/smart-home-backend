@@ -3,9 +3,9 @@ spring:
     name: smart-home-backend
 
   datasource:
-    url: jdbc:mysql://localhost:3306/smart_home
-    username: root
-    password: root
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
