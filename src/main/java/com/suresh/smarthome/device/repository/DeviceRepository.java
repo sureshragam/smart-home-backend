@@ -2,6 +2,7 @@ package com.suresh.smarthome.device.repository;
 
 
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,8 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
 
     long countByMotionStatus(MotionStatus motionStatus);
     Optional<Device> findByDeviceCode(String deviceCode);
+    
+    long countByLastSeenAfter(LocalDateTime lastSeen);
+
 
 }

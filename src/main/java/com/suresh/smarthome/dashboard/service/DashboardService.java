@@ -1,13 +1,17 @@
 package com.suresh.smarthome.dashboard.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
+import com.suresh.smarthome.common.util.DateTimeUtil;
 import com.suresh.smarthome.dashboard.dto.response.DashboardResponse;
-import com.suresh.smarthome.device.enums.DeviceStatus;
 import com.suresh.smarthome.device.enums.MotionStatus;
 import com.suresh.smarthome.device.repository.DeviceRepository;
 
 import lombok.RequiredArgsConstructor;
+import java.lang.management.ManagementFactory;
+import java.time.Duration;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +23,9 @@ public class DashboardService {
 
         long totalDevices = deviceRepository.count();
 
-        long onlineDevices = deviceRepository.countByStatus(DeviceStatus.ONLINE);
+        LocalDateTime threshold = DateTimeUtil.now().minusMinutes(1);
+
+        long onlineDevices = deviceRepository.countByLastSeenAfter(threshold);
 
         long activeMotionDevices =
                 deviceRepository.countByMotionStatus(MotionStatus.ACTIVE);
@@ -29,7 +35,24 @@ public class DashboardService {
                 .onlineDevices(onlineDevices)
                 .activeMotionDevices(activeMotionDevices)
                 .alerts(0)
-                .uptime("12h 30m")
+                .uptime(getApplicationUptime())
                 .build();
+    }
+    
+    private String getApplicationUptime() {
+
+        long uptimeMillis = ManagementFactory.getRuntimeMXBean().getUptime();
+
+        Duration duration = Duration.ofMillis(uptimeMillis);
+
+        long days = duration.toDays();
+        long hours = duration.toHoursPart();
+        long minutes = duration.toMinutesPart();
+
+        if (days > 0) {
+            return String.format("%dd %dh %dm", days, hours, minutes);
+        }
+
+        return String.format("%dh %dm", hours, minutes);
     }
 }
