@@ -1,62 +1,80 @@
-# 🏠 Smart Home Backend
+# 🏠 Smart Home IoT Platform - Backend
 
-A production-style IoT backend built with **Spring Boot** for managing smart home devices, motion events, health monitoring, and future ESP32 integrations.
-
-## 🚀 Features
-
-- Device Management
-- Dashboard Summary
-- Motion Event Processing
-- Device Heartbeat API
-- Health Monitoring
-- Global Exception Handling
-- Request Validation
-- Layered Architecture
-- RESTful APIs
+A production-style backend application built with **Spring Boot** for managing smart home devices, processing IoT events, monitoring system health, and serving REST APIs for the Smart Home IoT Platform.
 
 ---
 
-## 🛠 Tech Stack
+## ✨ Features
+
+- 📱 Device Management
+- 📊 Dashboard Summary
+- 🚶 Motion Event Processing
+- 📡 Device Heartbeat API
+- ❤️ Health Monitoring
+- 🔐 Request Validation
+- ⚠️ Global Exception Handling
+- 🏗 Layered Architecture
+- 🌐 RESTful APIs
+- ☁️ AWS EC2 Deployment
+
+---
+
+## 🛠 Technology Stack
+
+### Backend
 
 - Java 21
 - Spring Boot 3
 - Spring Data JPA
 - Hibernate
-- MySQL
 - Maven
 - Lombok
+
+### Database
+
+- MySQL
+
+### Deployment
+
+- Apache Tomcat
+- Nginx
+- AWS EC2
+- Let's Encrypt SSL
 
 ---
 
 ## 📂 Project Structure
 
+```text
+smart-home-backend
+│
+├── src
+├── docs
+├── pom.xml
+└── README.md
 ```
-src/main/java/com/suresh/smarthome
 
-├── activity
-├── common
-├── config
-├── dashboard
-├── device
-├── health
-└── SmartHomeBackendApplication.java
-```
+Detailed project architecture is available in the **docs** directory.
 
 ---
 
 ## 🏗 Architecture
 
-```
-Controller
+```text
+                REST Client
+                     │
+                     ▼
+              Spring Boot API
+                     │
+      ┌──────────────┴──────────────┐
+      ▼                             ▼
+ Business Services             Scheduled Tasks
       │
       ▼
-Service
+ Repository Layer
       │
       ▼
-Repository
-      │
-      ▼
-MySQL Database
+    MySQL Database
 ```
 
 ---
@@ -65,87 +83,101 @@ MySQL Database
 
 ### Dashboard
 
-| Method | Endpoint |
-|---------|----------|
-| GET | `/api/dashboard` |
+| Method | Endpoint         |
+| ------ | ---------------- |
+| GET    | `/api/dashboard` |
 
 ### Devices
 
-| Method | Endpoint |
-|---------|----------|
-| GET | `/api/devices` |
-| POST | `/api/devices/heartbeat` |
+| Method | Endpoint                 |
+| ------ | ------------------------ |
+| GET    | `/api/devices`           |
+| POST   | `/api/devices/heartbeat` |
 
 ### Activities
 
-| Method | Endpoint |
-|---------|----------|
-| GET | `/api/activities` |
-| POST | `/api/activities/motion` |
+| Method | Endpoint                 |
+| ------ | ------------------------ |
+| GET    | `/api/activities`        |
+| POST   | `/api/activities/motion` |
 
 ### Health
 
-| Method | Endpoint |
-|---------|----------|
-| GET | `/api/health` |
+| Method | Endpoint      |
+| ------ | ------------- |
+| GET    | `/api/health` |
+
+Complete API documentation is available in **docs/06-API-Documentation.md**.
 
 ---
 
-## 📊 Current Progress
+## 📌 Project Status
 
 ### ✅ Completed
 
-- Spring Boot Setup
+- Spring Boot Project Setup
+- Layered Architecture
 - MySQL Integration
-- JPA & Hibernate
+- Spring Data JPA & Hibernate
+- Dashboard APIs
 - Device APIs
-- Dashboard API
 - Activity APIs
 - Health APIs
-- Device Heartbeat
+- Device Heartbeat Processing
 - Motion Event Processing
-- Validation
-- Exception Handling
+- Request Validation
+- Global Exception Handling
+- AWS EC2 Deployment
+- Tomcat Deployment
+- HTTPS Configuration
 
 ### 🚧 In Progress
 
-- Sensor Reading API
-- ESP32 Integration
-- Camera Upload API
-- WebSocket Notifications
-- OTA Updates
+- Device Management (CRUD)
+- ESP32 Integration Improvements
+- Sensor Data APIs
+
+### 🔮 Planned
+
+- Spring Security & JWT Authentication
+- Home Automation Engine
+- Analytics Dashboard
+- Notification Service
+- ESP32-CAM Support
+- OTA Firmware Updates
+- WebSocket Integration
+- Docker Support
 
 ---
 
-## 🔮 Future Enhancements
+## 🚀 Getting Started
 
-- ESP32 Device Registration
-- Temperature & Humidity Sensors
-- ESP32-CAM Image Upload
-- Real-time Dashboard (WebSocket)
-- Push Notifications
-- Alexa Integration
-- Device Scheduling
-- Role-based Authentication
-- Docker Deployment
+### Prerequisites
 
----
+- Java 21
+- Maven
+- MySQL
+- Apache Tomcat 10
 
-## ▶️ Running the Project
-
-Clone the repository:
+### Clone Repository
 
 ```bash
 git clone https://github.com/<your-username>/smart-home-backend.git
 ```
 
-Navigate to the project:
+### Navigate to Project
 
 ```bash
 cd smart-home-backend
 ```
 
-Run the application:
+### Build Project
+
+```bash
+mvn clean install
+```
+
+### Run Application
 
 ```bash
 ./mvnw spring-boot:run
@@ -153,6 +185,46 @@ Run the application:
 
 ---
 
+## 📚 Documentation
+
+Detailed documentation is available in the **docs** directory.
+
+- Project Overview
+- Functional Requirements
+- System Architecture
+- Database Design
+- Backend Architecture
+- API Documentation
+- Network Architecture
+- Security
+- Deployment
+- Sprint Roadmap
+- Architecture Decisions
+
+---
+
+## 🗺 Roadmap
+
+- ✅ Sprint 1 – Foundation
+- ✅ Sprint 2 – Dashboard & Device Monitoring
+- 🚧 Sprint 3 – Device Management
+- ⏳ Sprint 4 – Security & Authentication
+- ⏳ Sprint 5 – Health Monitoring
+- ⏳ Sprint 6 – Automation
+- ⏳ Sprint 7 – Analytics
+- ⏳ Sprint 8 – Notifications
+- ⏳ Sprint 9 – Production Readiness
+
+---
+
+## 👨‍💻 Author
+
+**Suresh Ragam**
+
+GitHub: https://github.com/sureshragam
+
+---
+
 ## 📄 License
 
-This project is for learning, experimentation, and portfolio purposes.
+This project is intended for learning, experimentation, and portfolio purposes.

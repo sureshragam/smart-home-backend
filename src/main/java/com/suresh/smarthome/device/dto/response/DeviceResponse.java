@@ -1,6 +1,7 @@
 package com.suresh.smarthome.device.dto.response;
 
 import com.suresh.smarthome.device.enums.DeviceStatus;
+import com.suresh.smarthome.device.enums.DeviceType;
 import com.suresh.smarthome.device.enums.MotionStatus;
 
 import lombok.AllArgsConstructor;
@@ -18,14 +19,19 @@ public class DeviceResponse {
 
     private String name;
 
+    private String deviceCode;
+
+    private DeviceType type;
+
     private DeviceStatus status;
 
-    private MotionStatus motion;
+    private MotionStatus motionStatus;
 
-    private Integer wifi;
+    private Integer wifiStrength;
+
+    private String firmwareVersion;
 
     private String ipAddress;
 
     private String lastSeen;
-
 }

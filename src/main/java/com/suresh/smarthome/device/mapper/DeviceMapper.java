@@ -11,15 +11,18 @@ public final class DeviceMapper {
 
     public static DeviceResponse toResponse(Device device) {
 
-        return DeviceResponse.builder()
-                .id(device.getId())
-                .name(device.getName())
-                .status(device.getStatus())
-                .motion(device.getMotionStatus())
-                .wifi(device.getWifiStrength())
-                .ipAddress(device.getIpAddress())
-                .lastSeen(DateTimeUtil.format(device.getLastSeen()))
-                .build();
-    }
+    	return DeviceResponse.builder()
+    	        .id(device.getId())
+    	        .name(device.getName())
+    	        .deviceCode(device.getDeviceCode())
+    	        .type(device.getType())
+    	        .status(device.getStatus())
+    	        .motionStatus(device.getMotionStatus())
+    	        .wifiStrength(device.getWifiStrength())
+    	        .firmwareVersion(device.getFirmwareVersion())
+    	        .ipAddress(device.getIpAddress())
+    	        .lastSeen(DateTimeUtil.format(device.getLastSeen()))
+    	        .build();
 
+}
 }
