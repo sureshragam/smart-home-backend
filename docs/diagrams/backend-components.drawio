@@ -1,0 +1,40 @@
+<mxfile host="Electron">
+  <diagram id="backend" name="Backend Components">
+    <mxGraphModel dx="964" dy="755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" value="React Dashboard" vertex="1">
+          <mxGeometry height="60" width="220" x="360" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="controller" parent="1" style="swimlane;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;startSize=90;" value="Controller Layer&#xa;DeviceController&#xa;DashboardController&#xa;ActivityController" vertex="1">
+          <mxGeometry height="90" width="380" x="280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="service" parent="1" style="swimlane;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;startSize=100;" value="Service Layer&#xa;Business Logic&#xa;Validation&#xa;DeviceService&#xa;DashboardService" vertex="1">
+          <mxGeometry height="100" width="380" x="280" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" parent="1" style="swimlane;fillColor=#fff2cc;strokeColor=#d6b656;whiteSpace=wrap;html=1;startSize=80;" value="Repository Layer&#xa;Spring Data JPA Repositories" vertex="1">
+          <mxGeometry height="80" width="380" x="280" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="shape=cylinder;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;html=1;" value="MySQL Database" vertex="1">
+          <mxGeometry height="80" width="220" x="360" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg" parent="1" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;whiteSpace=wrap;html=1;startSize=300;gradientColor=none;labelBackgroundColor=none;labelBorderColor=none;textShadow=1;fontColor=light-dark(default, #7f1f1f);" value="Project Packages&#xa;&#xa;activity&#xa;common&#xa;config&#xa;dashboard&#xa;device&#xa;health&#xa;sensor" vertex="1">
+          <mxGeometry height="300" width="260" x="760" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="client" style="endArrow=block;html=1;" target="controller" value="REST API">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="controller" style="endArrow=block;html=1;" target="service" value="Business Logic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="service" style="endArrow=block;html=1;" target="repo" value="JPA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="repo" style="endArrow=block;html=1;" target="db" value="SQL">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

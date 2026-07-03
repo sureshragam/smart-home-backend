@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+<diagram id="deployment" name="Deployment Architecture">
+<mxGraphModel><root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="dev" value="Developer&#10;Mac + VS Code" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="60" y="70" width="170" height="70" as="geometry"/></mxCell>
+
+<mxCell id="git" value="GitHub Repository" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="300" y="70" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="maven" value="Maven Build&#10;WAR Package" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="560" y="70" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="ec2" value="AWS EC2&#10;Ubuntu Linux" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="70" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="nginx" value="Nginx&#10;HTTPS :443" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="210" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="tomcat" value="Apache Tomcat&#10;HTTP :8080" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="330" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="app" value="Spring Boot Backend" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="450" width="180" height="70" as="geometry"/></mxCell>
+
+<mxCell id="db" value="MySQL Database" style="shape=cylinder;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="570" width="180" height="80" as="geometry"/></mxCell>
+
+<mxCell id="client" value="Clients&#10;React Dashboard&#10;ESP32&#10;ESP32-CAM" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="300" y="450" width="220" height="120" as="geometry"/></mxCell>
+
+<mxCell id="e1" edge="1" parent="1" source="dev" target="git" value="git push"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e2" edge="1" parent="1" source="git" target="maven" value="Build"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e3" edge="1" parent="1" source="maven" target="ec2" value="Deploy WAR"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e4" edge="1" parent="1" source="ec2" target="nginx" value="HTTPS"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e5" edge="1" parent="1" source="nginx" target="tomcat" value="Proxy"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e6" edge="1" parent="1" source="tomcat" target="app"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e7" edge="1" parent="1" source="app" target="db" value="JPA"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e8" edge="1" parent="1" source="client" target="nginx" value="HTTPS REST"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root></mxGraphModel>
+</diagram>
+</mxfile>

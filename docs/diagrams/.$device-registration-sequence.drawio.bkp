@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-03T00:00:00Z" agent="ChatGPT" version="24.7.17">
+<diagram name="Device Registration Sequence">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" page="1">
+<root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="a" value="React Dashboard" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="30" y="20" width="120" height="700" as="geometry"/></mxCell>
+<mxCell id="b" value="DeviceController" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="250" y="20" width="120" height="700" as="geometry"/></mxCell>
+<mxCell id="c" value="DeviceService" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="20" width="120" height="700" as="geometry"/></mxCell>
+<mxCell id="d" value="DeviceRepository" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="730" y="20" width="140" height="700" as="geometry"/></mxCell>
+<mxCell id="e" value="MySQL" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="980" y="20" width="100" height="700" as="geometry"/></mxCell>
+
+<mxCell id="m1" value="POST /api/devices" edge="1" parent="1" source="a" target="b" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m2" value="Validate Request" edge="1" parent="1" source="b" target="c" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m3" value="Check deviceCode" edge="1" parent="1" source="c" target="d" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m4" value="INSERT Device" edge="1" parent="1" source="d" target="e" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m5" value="201 Created" edge="1" parent="1" source="b" target="a" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>

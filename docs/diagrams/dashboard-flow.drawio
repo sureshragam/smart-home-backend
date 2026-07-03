@@ -1,0 +1,75 @@
+<mxfile host="Electron" agent="ChatGPT">
+  <diagram name="Dashboard Request Flow" id="0">
+    <mxGraphModel dx="1043" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a" parent="1" style="shape=umlLifeline;html=1;" value="React Dashboard" vertex="1">
+          <mxGeometry height="700" width="120" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="b" parent="1" style="shape=umlLifeline;html=1;" value="DashboardController" vertex="1">
+          <mxGeometry height="700" width="140" x="220" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c" parent="1" style="shape=umlLifeline;html=1;" value="DashboardService" vertex="1">
+          <mxGeometry height="700" width="140" x="450" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d" parent="1" style="shape=umlLifeline;html=1;" value="Repositories" vertex="1">
+          <mxGeometry height="700" width="120" x="700" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e" parent="1" style="shape=umlLifeline;html=1;" value="MySQL" vertex="1">
+          <mxGeometry height="700" width="100" x="930" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" edge="1" parent="1" source="a" style="endArrow=block;html=1;exitX=0.5;exitY=0.171;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.486;entryY=0.172;entryDx=0;entryDy=0;entryPerimeter=0;" target="b" value="GET /api/dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" source="b" style="endArrow=block;html=1;exitX=0.514;exitY=0.259;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0.259;entryDx=0;entryDy=0;entryPerimeter=0;" target="c" value="Load Dashboard Data">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="400" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="endArrow=block;html=1;exitX=0.507;exitY=0.401;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.483;entryY=0.401;entryDx=0;entryDy=0;entryPerimeter=0;" value="Fetch Devices, Activities, Health">
+          <mxGeometry relative="1" x="0.0045" y="1" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="520.98" y="260.00000000000006" as="sourcePoint" />
+            <mxPoint x="757.96" y="260.00000000000006" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="endArrow=block;html=1;entryX=0.5;entryY=0.501;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.508;exitY=0.495;exitDx=0;exitDy=0;exitPerimeter=0;" value="SELECT Queries">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760.96" y="340" as="sourcePoint" />
+            <mxPoint x="980" y="344.20000000000005" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="dashed=1;endArrow=open;html=1;entryX=0.493;entryY=0.324;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0.321;exitDx=0;exitDy=0;exitPerimeter=0;" value="DashboardResponseDTO">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="510.98" y="520" as="sourcePoint" />
+            <mxPoint x="280" y="522.0999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="dashed=1;endArrow=open;html=1;entryX=0.5;entryY=0.399;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.514;exitY=0.401;exitDx=0;exitDy=0;exitPerimeter=0;" value="200 OK + JSON">
+          <mxGeometry relative="1" x="0.0002" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points" />
+            <mxPoint x="291.96000000000004" y="641.4000000000001" as="sourcePoint" />
+            <mxPoint x="80" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ykId_A1eE6pNsyY6k8_u-5" edge="1" parent="1" source="e" style="endArrow=classic;html=1;rounded=0;entryX=0.507;entryY=0.635;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.52;exitY=0.634;exitDx=0;exitDy=0;exitPerimeter=0;" target="c" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="590" as="sourcePoint" />
+            <mxPoint x="550" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ykId_A1eE6pNsyY6k8_u-6" connectable="0" parent="ykId_A1eE6pNsyY6k8_u-5" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="Returns Devices,Activities &amp;amp; Health Data" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-101" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

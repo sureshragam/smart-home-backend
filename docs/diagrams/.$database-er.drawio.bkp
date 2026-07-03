@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+<diagram id="database-er" name="Database ER Diagram">
+<mxGraphModel><root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="device" value="Device&#10;────────────&#10;PK id&#10;name&#10;deviceCode (UQ)&#10;type&#10;status&#10;motionStatus&#10;ipAddress&#10;wifiStrength&#10;firmwareVersion&#10;lastSeen&#10;createdAt&#10;updatedAt"
+style="shape=swimlane;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="80" width="260" height="300" as="geometry"/>
+</mxCell>
+
+<mxCell id="sensor" value="SensorReading&#10;────────────&#10;PK id&#10;FK device_id&#10;temperature&#10;humidity&#10;battery&#10;signalStrength&#10;readingTime&#10;createdAt&#10;updatedAt"
+style="shape=swimlane;startSize=28;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+<mxGeometry x="430" y="80" width="260" height="270" as="geometry"/>
+</mxCell>
+
+<mxCell id="activity" value="Activity&#10;────────────&#10;PK id&#10;deviceName&#10;type&#10;title&#10;message&#10;activityTime&#10;createdAt&#10;updatedAt"
+style="shape=swimlane;startSize=28;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="450" width="260" height="240" as="geometry"/>
+</mxCell>
+
+<mxCell id="health" value="HealthMetric&#10;────────────&#10;PK id&#10;label&#10;value&#10;status&#10;createdAt&#10;updatedAt"
+style="shape=swimlane;startSize=28;fillColor=#f8cecc;strokeColor=#b85450;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+<mxGeometry x="430" y="450" width="260" height="200" as="geometry"/>
+</mxCell>
+
+<mxCell id="rel" value="1 .. N" edge="1" parent="1" source="device" target="sensor" style="endArrow=ERmany;startArrow=ERone;html=1;">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+
+</root></mxGraphModel>
+</diagram>
+</mxfile>

@@ -1,0 +1,58 @@
+<mxfile host="Electron" agent="ChatGPT">
+  <diagram name="Device Heartbeat Sequence" id="0">
+    <mxGraphModel dx="1572" dy="960" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" parent="1" style="shape=umlLifeline;html=1;" value="ESP32" vertex="1">
+          <mxGeometry height="700" width="80" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="1" style="shape=umlLifeline;html=1;" value="DeviceController" vertex="1">
+          <mxGeometry height="700" width="120" x="240" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" parent="1" style="shape=umlLifeline;html=1;" value="DeviceService" vertex="1">
+          <mxGeometry height="700" width="120" x="470" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" parent="1" style="shape=umlLifeline;html=1;" value="DeviceRepository" vertex="1">
+          <mxGeometry height="700" width="140" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" parent="1" style="shape=umlLifeline;html=1;" value="MySQL" vertex="1">
+          <mxGeometry height="700" width="100" x="980" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="t1" style="endArrow=block;html=1;exitX=0.521;exitY=0.392;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.496;entryY=0.368;entryDx=0;entryDy=0;entryPerimeter=0;" target="t2" value="POST /api/devices/heartbeat">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="t2" style="endArrow=block;html=1;exitX=0.514;exitY=0.456;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.518;entryY=0.465;entryDx=0;entryDy=0;entryPerimeter=0;" target="t3" value="validate request">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="t3" style="endArrow=block;html=1;exitX=0.51;exitY=0.495;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.493;entryY=0.511;entryDx=0;entryDy=0;entryPerimeter=0;" target="t4" value="update heartbeat()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="t4" style="endArrow=block;html=1;exitX=0.486;exitY=0.481;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.512;entryY=0.481;entryDx=0;entryDy=0;entryPerimeter=0;" target="t5" value="UPDATE Devices Table">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="t2" style="dashed=1;endArrow=open;html=1;exitX=0.505;exitY=0.555;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.482;entryY=0.565;entryDx=0;entryDy=0;entryPerimeter=0;" target="t1" value="200 OK">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

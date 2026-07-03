@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-03T00:00:00Z" agent="ChatGPT" version="24.7.17">
+<diagram name="Authentication Sequence">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" page="1">
+<root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="a" value="React Dashboard" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="120" height="760" as="geometry"/></mxCell>
+<mxCell id="b" value="AuthController" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="240" y="20" width="120" height="760" as="geometry"/></mxCell>
+<mxCell id="c" value="AuthService" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="460" y="20" width="120" height="760" as="geometry"/></mxCell>
+<mxCell id="d" value="UserRepository" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="700" y="20" width="140" height="760" as="geometry"/></mxCell>
+<mxCell id="e" value="MySQL" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="960" y="20" width="100" height="760" as="geometry"/></mxCell>
+
+<mxCell id="m1" value="POST /api/auth/login" edge="1" parent="1" source="a" target="b" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m2" value="Validate Credentials" edge="1" parent="1" source="b" target="c" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m3" value="Find User" edge="1" parent="1" source="c" target="d" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m4" value="SELECT User" edge="1" parent="1" source="d" target="e" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m5" value="User Details" edge="1" parent="1" source="e" target="d" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m6" value="Verify Password (BCrypt)" edge="1" parent="1" source="d" target="c" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m7" value="Generate JWT Access Token" edge="1" parent="1" source="c" target="b" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m8" value="200 OK + JWT Token" edge="1" parent="1" source="b" target="a" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>

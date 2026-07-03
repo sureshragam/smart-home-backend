@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+<diagram id="backend" name="Backend Components">
+<mxGraphModel><root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="client" value="React Dashboard" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="20" width="220" height="60" as="geometry"/></mxCell>
+
+<mxCell id="controller" value="Controller Layer&#10;DeviceController&#10;DashboardController&#10;ActivityController" style="swimlane;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="120" width="380" height="90" as="geometry"/></mxCell>
+
+<mxCell id="service" value="Service Layer&#10;Business Logic&#10;Validation&#10;DeviceService&#10;DashboardService" style="swimlane;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="250" width="380" height="100" as="geometry"/></mxCell>
+
+<mxCell id="repo" value="Repository Layer&#10;Spring Data JPA Repositories" style="swimlane;fillColor=#fff2cc;strokeColor=#d6b656;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="390" width="380" height="80" as="geometry"/></mxCell>
+
+<mxCell id="db" value="MySQL Database" style="shape=cylinder;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="520" width="220" height="80" as="geometry"/></mxCell>
+
+<mxCell id="pkg" value="Project Packages&#10;&#10;activity&#10;common&#10;config&#10;dashboard&#10;device&#10;health&#10;sensor" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="760" y="120" width="260" height="300" as="geometry"/></mxCell>
+
+<mxCell id="e1" value="REST API" edge="1" parent="1" source="client" target="controller" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e2" value="Business Logic" edge="1" parent="1" source="controller" target="service" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e3" value="JPA" edge="1" parent="1" source="service" target="repo" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e4" value="SQL" edge="1" parent="1" source="repo" target="db" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root></mxGraphModel>
+</diagram>
+</mxfile>

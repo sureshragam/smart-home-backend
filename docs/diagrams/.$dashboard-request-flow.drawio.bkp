@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-03T00:00:00Z" agent="ChatGPT" version="24.7.17">
+<diagram name="Dashboard Request Flow">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" page="1">
+<root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="a" value="React Dashboard" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="120" height="700" as="geometry"/></mxCell>
+<mxCell id="b" value="DashboardController" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="220" y="20" width="140" height="700" as="geometry"/></mxCell>
+<mxCell id="c" value="DashboardService" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="450" y="20" width="140" height="700" as="geometry"/></mxCell>
+<mxCell id="d" value="Repositories" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="700" y="20" width="120" height="700" as="geometry"/></mxCell>
+<mxCell id="e" value="MySQL" style="shape=umlLifeline;html=1;" vertex="1" parent="1"><mxGeometry x="930" y="20" width="100" height="700" as="geometry"/></mxCell>
+
+<mxCell id="m1" value="GET /api/dashboard" edge="1" parent="1" source="a" target="b" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m2" value="Load Dashboard Data" edge="1" parent="1" source="b" target="c" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m3" value="Fetch Devices, Activities, Health" edge="1" parent="1" source="c" target="d" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m4" value="SELECT Queries" edge="1" parent="1" source="d" target="e" style="endArrow=block;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m5" value="DashboardResponseDTO" edge="1" parent="1" source="c" target="b" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="m6" value="200 OK + JSON" edge="1" parent="1" source="b" target="a" style="dashed=1;endArrow=open;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>

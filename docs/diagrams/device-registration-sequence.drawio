@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="ChatGPT">
+  <diagram name="Device Registration Sequence" id="0">
+    <mxGraphModel dx="1572" dy="960" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a" parent="1" style="shape=umlLifeline;html=1;" value="React Dashboard" vertex="1">
+          <mxGeometry height="700" width="120" x="30" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="b" parent="1" style="shape=umlLifeline;html=1;" value="DeviceController" vertex="1">
+          <mxGeometry height="700" width="120" x="250" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c" parent="1" style="shape=umlLifeline;html=1;" value="DeviceService" vertex="1">
+          <mxGeometry height="700" width="120" x="480" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d" parent="1" style="shape=umlLifeline;html=1;" value="DeviceRepository" vertex="1">
+          <mxGeometry height="700" width="140" x="730" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e" parent="1" style="shape=umlLifeline;html=1;" value="MySQL" vertex="1">
+          <mxGeometry height="700" width="100" x="980" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" edge="1" parent="1" source="a" style="endArrow=block;html=1;exitX=0.518;exitY=0.202;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.492;entryY=0.205;entryDx=0;entryDy=0;entryPerimeter=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" target="b" value="POST /api/devices">
+          <mxGeometry relative="1" x="0.0105" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="190" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" source="b" style="endArrow=block;html=1;exitX=0.483;exitY=0.256;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.514;entryY=0.263;entryDx=0;entryDy=0;entryPerimeter=0;" target="c" value="Validate Request">
+          <mxGeometry relative="1" x="0.0439" y="3" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" source="c" style="endArrow=block;html=1;exitX=0.479;exitY=0.349;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.497;entryY=0.347;entryDx=0;entryDy=0;entryPerimeter=0;" target="d" value="Check deviceCode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" source="d" style="endArrow=block;html=1;exitX=0.52;exitY=0.389;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.491;entryY=0.392;entryDx=0;entryDy=0;entryPerimeter=0;" target="e" value="INSERT Device">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" source="b" style="dashed=1;endArrow=open;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.501;exitY=0.502;exitDx=0;exitDy=0;exitPerimeter=0;" target="a" value="201 Created">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="190" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
