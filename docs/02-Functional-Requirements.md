@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Introduction
+# 1. Introduction
 
 This document defines the functional requirements of the Smart Home IoT Platform.
 
@@ -24,9 +24,10 @@ The administrator is responsible for:
 - Monitoring device status
 - Viewing dashboard statistics
 - Monitoring application health
-- Managing future automation rules
+- Managing project investments
 - Viewing activity history
 - Managing system configuration
+- Managing future automation rules
 
 Future versions of the platform may introduce additional roles such as standard users and guest users.
 
@@ -40,10 +41,11 @@ The Smart Home IoT Platform is divided into the following functional modules:
 - Device Management
 - Activity Management
 - Health Monitoring
-- Authentication & Authorization _(Planned)_
-- Automation _(Planned)_
-- Analytics _(Planned)_
-- Notifications _(Planned)_
+- Project Investment Management *(Planned)*
+- Authentication & Authorization *(Planned)*
+- Automation *(Planned)*
+- Analytics & Reports *(Planned)*
+- Notifications *(Planned)*
 - System Administration
 
 ---
@@ -64,6 +66,7 @@ The system shall:
 - Display active motion sensors.
 - Display recent activities.
 - Display backend health information.
+- Display total project investment.
 - Refresh dashboard data periodically.
 
 **Status:** Implemented
@@ -90,7 +93,7 @@ The system shall:
 - Process heartbeat updates from IoT devices.
 - Track device connectivity.
 
-**Status:** In Progress
+**Status:** In Progress *(Sprint 3)*
 
 ---
 
@@ -107,7 +110,7 @@ The system shall:
 - Record motion detection events.
 - Record device activity.
 - Display recent activities.
-- Support future activity filtering.
+- Support activity filtering.
 - Maintain historical activity logs.
 
 **Status:** Implemented
@@ -134,7 +137,32 @@ The system shall:
 
 ---
 
-# 8. Authentication & Authorization Module
+# 8. Project Investment Management Module
+
+## Description
+
+The Project Investment Management module tracks all hardware, infrastructure, networking, and software investments made while building the Smart Home IoT Platform.
+
+## Functional Requirements
+
+The system shall:
+
+- Add investment records.
+- Update investment records.
+- Delete investment records.
+- View investment history.
+- Search investments.
+- Filter investments by category.
+- Display total project investment.
+- Display investment analytics.
+- Categorize investments.
+- Track vendors and purchase dates.
+
+**Status:** Planned *(Sprint 5)*
+
+---
+
+# 9. Authentication & Authorization Module
 
 ## Description
 
@@ -145,16 +173,17 @@ The Authentication module provides secure access to the Smart Home IoT Platform.
 The system shall:
 
 - Authenticate users.
-- Generate JWT tokens.
+- Generate JWT access tokens.
 - Authorize API requests.
 - Support role-based access control.
-- Manage user sessions securely.
+- Encrypt passwords.
+- Secure user sessions.
 
-**Status:** Planned (Sprint 4)
+**Status:** Planned *(Sprint 4)*
 
 ---
 
-# 9. Automation Module
+# 10. Automation Module
 
 ## Description
 
@@ -175,11 +204,11 @@ The system shall:
 
 ---
 
-# 10. Analytics Module
+# 11. Analytics & Reports Module
 
 ## Description
 
-The Analytics module provides historical insights into smart home activities.
+The Analytics module provides historical insights into smart home activities and project statistics.
 
 ## Functional Requirements
 
@@ -190,12 +219,14 @@ The system shall:
 - Display historical charts.
 - Generate usage reports.
 - Analyze device activity.
+- Display investment reports.
+- Export analytics.
 
 **Status:** Planned
 
 ---
 
-# 11. Notification Module
+# 12. Notification Module
 
 ## Description
 
@@ -215,7 +246,7 @@ The system shall:
 
 ---
 
-# 12. System Administration Module
+# 13. System Administration Module
 
 ## Description
 
@@ -229,13 +260,14 @@ The system shall:
 - Manage device settings.
 - Monitor application status.
 - View system information.
-- Support future backup and restore functionality.
+- Support backup and restore.
+- Manage future user accounts.
 
 **Status:** Partially Implemented
 
 ---
 
-# 13. Non-Functional Requirements
+# 14. Non-Functional Requirements
 
 In addition to functional requirements, the platform shall satisfy the following quality attributes.
 
@@ -273,7 +305,7 @@ In addition to functional requirements, the platform shall satisfy the following
 
 ---
 
-# 14. Future Scope
+# 15. Future Scope
 
 Future platform enhancements include:
 
@@ -287,6 +319,7 @@ Future platform enhancements include:
 - Docker Deployment
 - Kubernetes Deployment
 - MQTT Integration
+- OTA Firmware Updates
 
 ---
 
