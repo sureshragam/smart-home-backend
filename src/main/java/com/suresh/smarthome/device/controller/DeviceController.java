@@ -2,6 +2,8 @@ package com.suresh.smarthome.device.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.suresh.smarthome.device.dto.request.AddDeviceRequest;
 import com.suresh.smarthome.device.dto.request.DeviceHeartbeatRequest;
 import com.suresh.smarthome.device.dto.response.DeviceResponse;
 import com.suresh.smarthome.device.service.DeviceService;
@@ -57,4 +60,13 @@ public class DeviceController {
 
         return ResponseEntity.ok().build();
     }
+    
+    @PostMapping
+    public ResponseEntity<DeviceResponse> addDevice(@Valid @RequestBody AddDeviceRequest device){
+    	DeviceResponse response = deviceService.addDevice(device);
+    	
+    	return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+    
+
 }

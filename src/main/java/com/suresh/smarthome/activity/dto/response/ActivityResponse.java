@@ -21,7 +21,9 @@ public class ActivityResponse {
 
     private String title;
 
-    private String device;
+    private String deviceName;
+
+    private String sensorName;
 
     private String timestamp;
 

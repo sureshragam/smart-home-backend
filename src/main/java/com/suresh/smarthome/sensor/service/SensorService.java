@@ -2,19 +2,26 @@ package com.suresh.smarthome.sensor.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.suresh.smarthome.common.exception.ResourceAlreadyExistsException;
 import com.suresh.smarthome.common.exception.ResourceNotFoundException;
 import com.suresh.smarthome.common.util.DateTimeUtil;
 import com.suresh.smarthome.device.entity.Device;
 import com.suresh.smarthome.device.repository.DeviceRepository;
+import com.suresh.smarthome.sensor.dto.request.AddSensorRequest;
 import com.suresh.smarthome.sensor.dto.request.SensorReadingRequest;
+import com.suresh.smarthome.sensor.dto.response.AddSensorResponse;
 import com.suresh.smarthome.sensor.dto.response.SensorReadingResponse;
+import com.suresh.smarthome.sensor.entity.Sensor;
 import com.suresh.smarthome.sensor.entity.SensorReading;
-import com.suresh.smarthome.sensor.mapper.SensorMapper;
+import com.suresh.smarthome.sensor.enums.SensorStatus;
+import com.suresh.smarthome.sensor.mapper.SensorReadingMapper;
+import com.suresh.smarthome.sensor.repository.SensorReadingRepository;
 import com.suresh.smarthome.sensor.repository.SensorRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,20 +31,52 @@ import lombok.RequiredArgsConstructor;
 public class SensorService {
 
     private final SensorRepository sensorRepository;
+    private final SensorReadingRepository sensorReadingRepository;
     private final DeviceRepository deviceRepository;
 
-    public List<SensorReadingResponse> getAllReadings() {
+    public List<SensorReadingResponse> getAllSensorReadings() {
 
-        return sensorRepository.findAll(
+        return sensorReadingRepository.findAll(
                 Sort.by(Sort.Direction.DESC, "readingTime"))
                 .stream()
-                .map(SensorMapper::toResponse)
+                .map(SensorReadingMapper::toResponse)
                 .toList();
     }
 
     @Transactional
-    public SensorReadingResponse saveReading(
-            SensorReadingRequest request) {
+    public SensorReadingResponse saveReading(SensorReadingRequest request) {
+
+        Sensor sensor = sensorRepository.findBySensorCode(request.getSensorCode())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                String.format(
+                                        "Sensor with code '%s' not found.",
+                                        request.getSensorCode())));
+
+        LocalDateTime now = DateTimeUtil.now();
+
+        // Update heartbeat
+        sensor.setLastSeen(now);
+        sensor.setStatus(SensorStatus.ACTIVE);
+
+        Device device = sensor.getDevice();
+        device.setLastSeen(now);
+
+        SensorReading reading = SensorReading.builder()
+                .sensor(sensor)
+                .readingType(request.getReadingType())
+                .value(request.getValue())
+                .unit(request.getUnit())
+                .readingTime(now)
+                .build();
+
+        SensorReading savedReading = sensorReadingRepository.save(reading);
+
+        return SensorReadingMapper.toResponse(savedReading);
+    }
+
+    @Transactional
+    public AddSensorResponse addSensor(AddSensorRequest request) {
 
         Device device = deviceRepository.findByDeviceCode(request.getDeviceCode())
                 .orElseThrow(() ->
@@ -45,23 +84,65 @@ public class SensorService {
                                 String.format(
                                         "Device with code '%s' not found.",
                                         request.getDeviceCode())));
-        
-        LocalDateTime now = DateTimeUtil.now();
-        device.setLastSeen(now);
 
-        SensorReading reading = SensorReading.builder()
+        String sensorCode = generateSensorCode(device, request);
+
+        if (sensorRepository.existsBySensorCode(sensorCode)) {
+            throw new ResourceAlreadyExistsException(
+                    String.format(
+                            "Sensor with code '%s' already exists.",
+                            sensorCode));
+        }
+
+        Sensor sensor = Sensor.builder()
+                .name(request.getName())
+                .sensorCode(sensorCode)
+                .type(request.getType())
+                .status(SensorStatus.ACTIVE)
+                .pinNumber(request.getPinNumber())
+                .manufacturer(request.getManufacturer())
+                .model(request.getModel())
                 .device(device)
-                .temperature(request.getTemperature())
-                .humidity(request.getHumidity())
-                .battery(request.getBattery())
-                .signalStrength(request.getSignalStrength())
-                .readingTime(now)
                 .build();
 
-        SensorReading savedReading =
-                sensorRepository.save(reading);
+        Sensor savedSensor = sensorRepository.save(sensor);
 
-        return SensorMapper.toResponse(savedReading);
+        return AddSensorResponse.builder()
+                .sensorCode(savedSensor.getSensorCode())
+                .name(savedSensor.getName())
+                .type(savedSensor.getType())
+                .manufacturer(savedSensor.getManufacturer())
+                .model(savedSensor.getModel())
+                .pinNumber(savedSensor.getPinNumber())
+                .deviceCode(savedSensor.getDevice().getDeviceCode())
+                .message("Sensor registered successfully.")
+                .build();
     }
 
+    private String generateSensorCode(
+            Device device,
+            AddSensorRequest request) {
+
+        Optional<Sensor> lastSensor =
+                sensorRepository.findTopByDeviceAndTypeOrderByIdDesc(
+                        device,
+                        request.getType());
+
+        int nextSequence = 1;
+
+        if (lastSensor.isPresent()) {
+
+            String code = lastSensor.get().getSensorCode();
+
+            String[] parts = code.split("-");
+
+            nextSequence = Integer.parseInt(parts[2]) + 1;
+        }
+
+        return String.format(
+                "%s-%s-%03d",
+                request.getType().name(),
+                device.getLocation().name(),
+                nextSequence);
+    }
 }

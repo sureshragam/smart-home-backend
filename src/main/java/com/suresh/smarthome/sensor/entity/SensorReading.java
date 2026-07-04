@@ -3,22 +3,11 @@ package com.suresh.smarthome.sensor.entity;
 import java.time.LocalDateTime;
 
 import com.suresh.smarthome.common.entity.BaseEntity;
-import com.suresh.smarthome.device.entity.Device;
+import com.suresh.smarthome.sensor.enums.ReadingType;
+import com.suresh.smarthome.sensor.enums.UnitType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "sensor_readings")
@@ -34,20 +23,19 @@ public class SensorReading extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id", nullable = false)
-    private Device device;
+    @JoinColumn(name = "sensor_id", nullable = false)
+    private Sensor sensor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ReadingType readingType;
 
     @Column(nullable = false)
-    private Double temperature;
-
+    private Double value;
+    
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Double humidity;
-
-    @Column(nullable = false)
-    private Integer battery;
-
-    @Column(nullable = false)
-    private Integer signalStrength;
+    private UnitType unit;
 
     @Column(nullable = false)
     private LocalDateTime readingTime;

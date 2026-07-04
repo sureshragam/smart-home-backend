@@ -1,11 +1,15 @@
 package com.suresh.smarthome.device.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.suresh.smarthome.common.exception.ResourceAlreadyExistsException;
 import com.suresh.smarthome.common.exception.ResourceNotFoundException;
 import com.suresh.smarthome.common.util.DateTimeUtil;
+import com.suresh.smarthome.device.dto.request.AddDeviceRequest;
 import com.suresh.smarthome.device.dto.request.DeviceHeartbeatRequest;
 import com.suresh.smarthome.device.dto.response.DeviceResponse;
 import com.suresh.smarthome.device.entity.Device;
@@ -23,7 +27,7 @@ public class DeviceService {
 
     public List<DeviceResponse> getAllDevices() {
 
-        return deviceRepository.findAll()
+        return deviceRepository.findAll(Sort.by(Sort.Direction.ASC, "name"))
                 .stream()
                 .map(DeviceMapper::toResponse)
                 .toList();
@@ -43,5 +47,43 @@ public class DeviceService {
         device.setLastSeen(DateTimeUtil.now());
 
         deviceRepository.save(device);
+    }
+    
+    public DeviceResponse addDevice(AddDeviceRequest request) {
+    	String deviceCode = generateDeviceCode(request);
+    	Optional<Device> existingDevice = deviceRepository.findByDeviceCode(deviceCode);
+    	if(existingDevice.isPresent()) {
+    		throw new ResourceAlreadyExistsException(
+    		        String.format("Device with code '%s' already exists.", deviceCode));
+    	}
+    	Device newDevice  = DeviceMapper.toDevice(request);
+    	newDevice.setDeviceCode(deviceCode);
+    	Device savedDevice = deviceRepository.save(newDevice);
+    	return DeviceMapper.toResponse(savedDevice);
+    	
+    }
+    
+    private String generateDeviceCode(AddDeviceRequest request) {
+
+        Optional<Device> lastDevice =
+                deviceRepository.findTopByTypeAndLocationOrderByIdDesc(
+                        request.getType(),
+                        request.getLocation());
+
+        int nextSequence = 1;
+
+        if (lastDevice.isPresent()) {
+
+            String code = lastDevice.get().getDeviceCode();
+
+            String[] parts = code.split("-");
+
+            nextSequence = Integer.parseInt(parts[2]) + 1;
+        }
+
+        return String.format("%s-%s-%03d",
+                request.getType().name(),
+                request.getLocation().name(),
+                nextSequence);
     }
 }

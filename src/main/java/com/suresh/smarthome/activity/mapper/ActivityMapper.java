@@ -15,7 +15,8 @@ public final class ActivityMapper {
                 .id(activity.getId())
                 .type(activity.getType())
                 .title(activity.getTitle())
-                .device(activity.getDeviceName())
+                .deviceName(activity.getSensor().getDevice().getName())
+                .sensorName(activity.getSensor().getName())
                 .timestamp(DateTimeUtil.format(activity.getActivityTime()))
                 .build();
     }

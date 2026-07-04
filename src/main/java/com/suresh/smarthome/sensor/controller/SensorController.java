@@ -1,20 +1,21 @@
 package com.suresh.smarthome.sensor.controller;
 
-import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.suresh.smarthome.sensor.dto.request.SensorReadingRequest;
-import com.suresh.smarthome.sensor.dto.response.SensorReadingResponse;
+import com.suresh.smarthome.sensor.dto.request.AddSensorRequest;
+
+import com.suresh.smarthome.sensor.dto.response.AddSensorResponse;
+
 import com.suresh.smarthome.sensor.service.SensorService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,39 +25,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Tag(
     name = "Sensors",
-    description = "APIs for storing and retrieving sensor readings from IoT devices."
+    description = "APIs for CRUD operations for sensors"
 )
 public class SensorController {
 
     private final SensorService sensorService;
-
-    @Operation(
-        summary = "Get all sensor readings",
-        description = "Returns all recorded sensor readings ordered by the latest reading first."
-    )
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Sensor readings retrieved successfully")
-    })
-    @GetMapping
-    public List<SensorReadingResponse> getAllReadings() {
-
-        return sensorService.getAllReadings();
-    }
-
-    @Operation(
-        summary = "Save a sensor reading",
-        description = "Receives temperature, humidity, battery level and Wi-Fi signal strength from an IoT device and stores the reading."
-    )
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Sensor reading saved successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid sensor reading request"),
-        @ApiResponse(responseCode = "404", description = "Device not found")
-    })
+    
     @PostMapping
-    public SensorReadingResponse saveReading(
-            @Valid @RequestBody SensorReadingRequest request) {
+    public ResponseEntity<AddSensorResponse> addSensor(@Valid @RequestBody AddSensorRequest request) {
+    	AddSensorResponse response = sensorService.addSensor(request);
+    	return ResponseEntity.status(HttpStatus.CREATED)
+                .body(response);
 
-        return sensorService.saveReading(request);
     }
 
 }

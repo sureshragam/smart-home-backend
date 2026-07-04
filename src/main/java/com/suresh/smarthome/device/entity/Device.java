@@ -2,9 +2,9 @@ package com.suresh.smarthome.device.entity;
 
 import java.time.LocalDateTime;
 
+import com.suresh.smarthome.device.enums.DeviceLocation;
 import com.suresh.smarthome.device.enums.DeviceStatus;
 import com.suresh.smarthome.device.enums.DeviceType;
-import com.suresh.smarthome.device.enums.MotionStatus;
 import com.suresh.smarthome.common.entity.BaseEntity;
 
 import jakarta.persistence.Column;
@@ -47,10 +47,10 @@ public class Device extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private DeviceStatus status;
-
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MotionStatus motionStatus;
+    private DeviceLocation location;
 
     private String ipAddress;
 

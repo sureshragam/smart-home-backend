@@ -20,11 +20,11 @@ import lombok.Setter;
 public class MotionRequest {
 
     @Schema(
-            description = "Unique device code",
-            example = "ESP32-LIVINGROOM-01"
+            description = "Unique sensor code",
+            example = "PIR-HALL-01"
     )
-    @NotBlank(message = "Device code is required.")
-    private String deviceCode;
+    @NotBlank(message = "Sensor code is required.")
+    private String sensorCode;
 
     @Schema(
             description = "Current motion status",
@@ -33,5 +33,4 @@ public class MotionRequest {
     )
     @NotNull(message = "Motion status is required.")
     private MotionStatus motionStatus;
-
 }

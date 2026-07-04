@@ -1,5 +1,8 @@
 package com.suresh.smarthome.sensor.dto.response;
 
+import com.suresh.smarthome.sensor.enums.ReadingType;
+import com.suresh.smarthome.sensor.enums.UnitType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,15 +18,17 @@ public class SensorReadingResponse {
 
     private Long id;
 
+    private String sensorName;
+
+    private String sensorCode;
+
     private String deviceName;
 
-    private Double temperature;
+    private ReadingType readingType;
 
-    private Double humidity;
+    private Double value;
 
-    private Integer battery;
-
-    private Integer signalStrength;
+    private UnitType unit;
 
     private String readingTime;
 
