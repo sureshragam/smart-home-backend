@@ -2,11 +2,13 @@
 
 ---
 
-## 1. Introduction
+# 1. Introduction
 
 The Smart Home IoT Platform is a full-stack Internet of Things (IoT) solution designed to monitor, manage, and automate smart home devices through a centralized web application.
 
-The platform integrates ESP32-based devices with a Spring Boot backend and a React frontend to provide real-time monitoring, device management, health tracking, and future home automation capabilities. It is designed using scalable software architecture principles and follows industry-standard development practices such as layered architecture, RESTful APIs, Agile sprint planning, and continuous documentation.
+The platform integrates ESP32-based devices with a Spring Boot backend and a React frontend to provide real-time monitoring, device management, health tracking, project investment tracking, and future home automation capabilities.
+
+It is designed using scalable software architecture principles and follows industry-standard development practices such as layered architecture, RESTful APIs, Agile sprint planning, and continuous documentation.
 
 Beyond serving as a smart home solution, this project is also intended as a production-style portfolio application that demonstrates modern full-stack software engineering, IoT integration, cloud deployment, and system design.
 
@@ -14,7 +16,7 @@ Beyond serving as a smart home solution, this project is also intended as a prod
 
 # 2. Vision
 
-To build a scalable, secure, and extensible Smart Home IoT Platform capable of managing connected devices, collecting real-time data, automating household operations, and providing meaningful insights through a modern web dashboard.
+To build a scalable, secure, and extensible Smart Home IoT Platform capable of managing connected devices, collecting real-time data, tracking project investments, automating household operations, and providing meaningful insights through a modern web dashboard.
 
 The long-term vision is to evolve the platform into a complete home automation ecosystem supporting multiple IoT devices, intelligent automation, analytics, notifications, and secure remote management.
 
@@ -28,6 +30,7 @@ The primary objectives of the project are:
 - Build a responsive React-based web dashboard.
 - Integrate ESP32-based IoT devices.
 - Monitor connected devices in real time.
+- Track project investments and infrastructure costs.
 - Support future home automation workflows.
 - Provide a secure REST API architecture.
 - Demonstrate software engineering best practices.
@@ -39,21 +42,22 @@ The primary objectives of the project are:
 
 The Smart Home IoT Platform is designed to support the complete lifecycle of smart home device management.
 
-Current scope includes:
+## Current Scope
 
-- Device Management
 - Dashboard Monitoring
-- Device Health Monitoring
+- Device Management
 - Motion Event Processing
 - Device Heartbeat Monitoring
+- Health Monitoring
+- Project Investment Management
 - REST API Services
 - Cloud Deployment
 
-Future scope includes:
+## Future Scope
 
-- Home Automation Rules
 - Security & Authentication
-- Analytics Dashboard
+- Home Automation Rules
+- Analytics & Reports
 - Notification Services
 - Camera Integration
 - Environmental Sensor Monitoring
@@ -63,7 +67,24 @@ Future scope includes:
 
 ---
 
-# 5. Core Features
+# 5. Project Modules
+
+The platform is organized into the following functional modules:
+
+- Dashboard
+- Device Management
+- Activity Management
+- Health Monitoring
+- Sensor Management
+- Project Investment Management
+- Authentication & Security *(Planned)*
+- Home Automation *(Planned)*
+- Analytics & Reports *(Planned)*
+- Notifications *(Planned)*
+
+---
+
+# 6. Core Features
 
 The platform provides the following core capabilities:
 
@@ -71,7 +92,9 @@ The platform provides the following core capabilities:
 - Dashboard Overview
 - Device Status Monitoring
 - Motion Detection Processing
+- Device Heartbeat Monitoring
 - Health Monitoring
+- Project Investment Tracking
 - RESTful APIs
 - Secure Backend Architecture
 - Cloud Deployment
@@ -79,7 +102,7 @@ The platform provides the following core capabilities:
 
 ---
 
-# 6. Technology Stack
+# 7. Technology Stack
 
 ## Backend
 
@@ -116,37 +139,37 @@ The platform provides the following core capabilities:
 
 ---
 
-# 7. System Components
+# 8. System Components
 
-The platform consists of the following major components:
+The platform consists of the following major components.
 
-### Backend
+## Backend
 
-Responsible for business logic, REST APIs, data processing, scheduling, and device communication.
+Responsible for business logic, REST APIs, data processing, scheduling, and communication with IoT devices.
 
-### Frontend
+## Frontend
 
 Provides a responsive web dashboard for monitoring and managing smart home devices.
 
-### Database
+## Database
 
-Stores devices, activities, health metrics, and future automation data.
+Stores devices, activities, health metrics, project investments, and future automation data.
 
-### IoT Devices
+## IoT Devices
 
 ESP32-based devices collect sensor data, send heartbeat information, detect motion, and execute automation commands.
 
-### Infrastructure
+## Infrastructure
 
 Hosts and exposes backend services securely using cloud infrastructure and reverse proxy configuration.
 
 ---
 
-# 8. Current Status
+# 9. Current Status
 
 The project is actively being developed using an Agile sprint-based workflow.
 
-Completed milestones include:
+## Completed
 
 - Project Foundation
 - Dashboard Module
@@ -154,11 +177,22 @@ Completed milestones include:
 - Health Monitoring
 - Cloud Deployment
 
-Current development focuses on Device Management, with additional modules planned for security, automation, analytics, and notifications.
+## Current Development
+
+- Device Management (Sprint 3)
+
+## Upcoming Development
+
+- Security & Authentication
+- Project Investment Management
+- Health Monitoring Enhancements
+- Home Automation
+- Analytics & Reports
+- Notifications
 
 ---
 
-# 9. Long-Term Roadmap
+# 10. Long-Term Roadmap
 
 The platform will continue to evolve through planned development sprints.
 
@@ -166,11 +200,12 @@ Major roadmap items include:
 
 - Device Management
 - Security & Authentication
-- Health Monitoring
-- Automation Engine
-- Analytics
-- Notification Services
+- Project Investment Management
+- Health Monitoring Enhancements
+- Home Automation
+- Analytics & Reports
+- Notifications
 - Production Readiness
 - Advanced IoT Integrations
 
-The ultimate goal is to deliver a complete, scalable, and production-ready Smart Home IoT Platform capable of supporting a wide range of connected devices and automation scenarios.
+The ultimate goal is to deliver a complete, scalable, secure, and production-ready Smart Home IoT Platform capable of supporting a wide range of connected devices, automation workflows, and real-time monitoring scenarios.
