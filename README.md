@@ -11,6 +11,7 @@ A production-style backend application built with **Spring Boot** for managing s
 - 🚶 Motion Event Processing
 - 📡 Device Heartbeat API
 - ❤️ Health Monitoring
+- 💰 Project Investment Management
 - 🔐 Request Validation
 - ⚠️ Global Exception Handling
 - 🏗 Layered Architecture
@@ -83,31 +84,38 @@ Detailed project architecture is available in the **docs** directory.
 
 ### Dashboard
 
-| Method | Endpoint         |
-| ------ | ---------------- |
-| GET    | `/api/dashboard` |
+| Method | Endpoint |
+| ------ | -------- |
+| GET | `/api/dashboard` |
 
 ### Devices
 
-| Method | Endpoint                 |
-| ------ | ------------------------ |
-| GET    | `/api/devices`           |
-| POST   | `/api/devices/heartbeat` |
+| Method | Endpoint |
+| ------ | -------- |
+| GET | `/api/devices` |
+| POST | `/api/devices/heartbeat` |
 
 ### Activities
 
-| Method | Endpoint                 |
-| ------ | ------------------------ |
-| GET    | `/api/activities`        |
-| POST   | `/api/activities/motion` |
+| Method | Endpoint |
+| ------ | -------- |
+| GET | `/api/activities` |
+| POST | `/api/activities/motion` |
 
 ### Health
 
-| Method | Endpoint      |
-| ------ | ------------- |
-| GET    | `/api/health` |
+| Method | Endpoint |
+| ------ | -------- |
+| GET | `/api/health` |
 
-Complete API documentation is available in **docs/06-API-Documentation.md**.
+> **Upcoming APIs**
+>
+> - Investment Management APIs
+> - Authentication APIs
+> - Sensor Reading APIs
+> - Automation APIs
+
+Complete API documentation is available in **docs/07-API-Documentation.md**.
 
 ---
 
@@ -128,7 +136,7 @@ Complete API documentation is available in **docs/06-API-Documentation.md**.
 - Request Validation
 - Global Exception Handling
 - AWS EC2 Deployment
-- Tomcat Deployment
+- Apache Tomcat Deployment
 - HTTPS Configuration
 
 ### 🚧 In Progress
@@ -140,6 +148,7 @@ Complete API documentation is available in **docs/06-API-Documentation.md**.
 ### 🔮 Planned
 
 - Spring Security & JWT Authentication
+- Project Investment Management
 - Home Automation Engine
 - Analytics Dashboard
 - Notification Service
@@ -189,17 +198,17 @@ mvn clean install
 
 Detailed documentation is available in the **docs** directory.
 
-- Project Overview
-- Functional Requirements
-- System Architecture
-- Database Design
-- Backend Architecture
-- API Documentation
-- Network Architecture
-- Security
-- Deployment
-- Sprint Roadmap
-- Architecture Decisions
+- 📖 Project Overview
+- 📋 Functional Requirements
+- 🏗 System Architecture
+- 🗄 Database Design
+- ⚙ Backend Architecture
+- 🌐 API Documentation
+- 🌍 Network Architecture
+- 🔐 Security
+- 🚀 Deployment
+- 📅 Sprint Roadmap
+- 📐 Architecture Decisions
 
 ---
 
@@ -209,11 +218,25 @@ Detailed documentation is available in the **docs** directory.
 - ✅ Sprint 2 – Dashboard & Device Monitoring
 - 🚧 Sprint 3 – Device Management
 - ⏳ Sprint 4 – Security & Authentication
-- ⏳ Sprint 5 – Health Monitoring
-- ⏳ Sprint 6 – Automation
-- ⏳ Sprint 7 – Analytics
-- ⏳ Sprint 8 – Notifications
-- ⏳ Sprint 9 – Production Readiness
+- ⏳ Sprint 5 – Project Investment Management
+- ⏳ Sprint 6 – Health Monitoring Enhancements
+- ⏳ Sprint 7 – Home Automation
+- ⏳ Sprint 8 – Analytics & Reports
+- ⏳ Sprint 9 – Notifications
+- ⏳ Sprint 10 – Production Readiness
+
+---
+
+## 🚀 Future Technologies
+
+- Spring Security
+- JWT Authentication
+- WebSocket
+- Docker
+- MQTT
+- Grafana
+- Prometheus
+- Home Assistant Integration
 
 ---
 
