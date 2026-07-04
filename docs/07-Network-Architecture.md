@@ -4,30 +4,42 @@
 
 # 1. Introduction
 
-The Smart Home IoT Platform consists of multiple network-connected components that communicate over both local and cloud networks.
+The Smart Home IoT Platform consists of multiple network-connected components that communicate across both local and cloud networks.
 
-The network architecture is designed to provide secure communication between IoT devices, the backend server, the frontend dashboard, and administrators while maintaining scalability for future expansion.
+The network architecture is designed to provide secure, reliable, and scalable communication between IoT devices, backend services, frontend applications, and administrators while supporting future expansion through local infrastructure and cloud-based services.
 
 ---
 
 # 2. Network Overview
 
-The platform currently consists of the following network components:
+The platform currently consists of the following network components.
 
-- React Frontend
+## Cloud Infrastructure
+
+- AWS EC2
+- Nginx Reverse Proxy
+- Apache Tomcat
 - Spring Boot Backend
-- MySQL Database
+
+## Home Network
+
+- Wi-Fi Router
 - ESP32 Devices
 - ESP32-CAM
-- Home Wi-Fi Network
-- AWS EC2 Server
+- Development Laptop
+- Mobile Devices
 
-Future enhancements include:
+## Database
+
+- MySQL
+
+## Future Components
 
 - Mini PC Home Server
 - Local DNS
 - MQTT Broker
-- Monitoring Stack
+- Monitoring Stack (Grafana & Prometheus)
+- VPN Gateway
 
 ---
 
@@ -41,7 +53,7 @@ The overall network topology is illustrated in the Network Topology Diagram.
 
 # 4. Cloud Infrastructure
 
-The cloud infrastructure hosts the backend application.
+The cloud infrastructure hosts the public backend services.
 
 Current components include:
 
@@ -50,10 +62,11 @@ Current components include:
 - Nginx Reverse Proxy
 - Let's Encrypt SSL Certificate
 
-Responsibilities include:
+### Responsibilities
 
-- Hosting REST APIs
+- Host REST APIs
 - HTTPS termination
+- Reverse proxy configuration
 - Request routing
 - Secure internet access
 
@@ -61,7 +74,7 @@ Responsibilities include:
 
 # 5. Home Network
 
-The home network hosts all IoT devices.
+The home network hosts all IoT devices and development systems.
 
 Current components include:
 
@@ -71,52 +84,78 @@ Current components include:
 - Development Laptop
 - Mobile Devices
 
-All IoT devices communicate with the backend over Wi-Fi.
+### Responsibilities
+
+- Device communication
+- Sensor data collection
+- Local device management
+- Development and testing
 
 ---
 
 # 6. IP Address Management
 
-IoT devices use static IP addresses within the home network.
+All IoT devices use static IP addresses within the home network.
 
-Benefits include:
+### Benefits
 
 - Stable device communication
-- Easier troubleshooting
 - Simplified backend configuration
+- Easier troubleshooting
 - Predictable network management
+- Consistent camera access
 
-Future versions may use local DNS to resolve device hostnames instead of IP addresses.
+Future versions may use Local DNS to resolve device hostnames instead of IP addresses.
+
+Example:
+
+```
+esp32-livingroom.local
+esp32-camera.local
+```
 
 ---
 
 # 7. Communication Flow
 
-The following communication paths are currently supported.
+The platform currently supports the following communication paths.
 
 ## Frontend → Backend
 
+Protocol:
+
 - HTTPS
-- REST APIs
+
+Technology:
+
+- REST API
 - JSON
 
 ---
 
 ## ESP32 → Backend
 
-- HTTP
-- REST APIs
+Protocol:
+
+- HTTP *(Current)*
+- HTTPS *(Future)*
+
+Technology:
+
+- REST API
 - JSON
 
 Used for:
 
-- Device heartbeat
-- Motion events
-- Sensor readings
+- Device Heartbeat
+- Motion Events
+- Sensor Readings
 
 ---
 
 ## Backend → Database
+
+Technology:
 
 - Spring Data JPA
 - Hibernate
@@ -124,38 +163,106 @@ Used for:
 
 ---
 
+## Administrator → Frontend
+
+Protocol:
+
+- HTTPS
+
+Devices:
+
+- Desktop Browser
+- Mobile Browser
+
+---
+
 # 8. Security
 
-Network communication follows the following principles:
+Network communication follows the following principles.
 
 - HTTPS for public APIs
-- Secure reverse proxy
+- SSL/TLS encryption
+- Nginx Reverse Proxy
 - Input validation
 - Firewall configuration
 - Restricted backend access
+- Static IP assignment for IoT devices
 
-Future versions will introduce JWT authentication for protected APIs.
+Future enhancements include:
+
+- JWT Authentication
+- HTTPS communication for IoT devices
+- VPN remote access
+- Local DNS
+- Network segmentation (VLAN)
 
 ---
 
 # 9. Future Network Enhancements
 
-The following improvements are planned:
+The following improvements are planned.
 
 - Mini PC Home Server
 - Local DNS
 - MQTT Broker
 - WebSocket Communication
+- Grafana
+- Prometheus
 - Centralized Monitoring
-- VLAN Support (Optional)
-- VPN Remote Access (Optional)
+- VPN Remote Access
+- VLAN Support
+- High Availability
 
-These enhancements will improve scalability, reliability, and maintainability while keeping IoT devices within the private home network.
+These enhancements will improve scalability, maintainability, observability, and security while keeping IoT devices within the private home network.
+
+---
+
+# 10. Network Design Principles
+
+The network architecture follows these design principles.
+
+## Simplicity
+
+Use straightforward communication paths and minimal configuration complexity.
+
+---
+
+## Reliability
+
+Use static IP addressing and stable network components to reduce downtime.
+
+---
+
+## Security
+
+Expose only required public services while keeping IoT devices isolated within the home network.
+
+---
+
+## Scalability
+
+Support adding new IoT devices, sensors, cameras, and services without redesigning the network.
+
+---
+
+## Maintainability
+
+Design the network so devices can be easily identified, monitored, and managed.
+
+---
+
+# 11. Future Vision
+
+The long-term network architecture will combine cloud and local infrastructure.
+
+Cloud services will provide secure remote access and API hosting, while a dedicated Mini PC will execute local automation, MQTT messaging, monitoring, and future AI-based processing.
+
+This hybrid architecture ensures low-latency local control while maintaining secure remote accessibility.
 
 ---
 
 # Conclusion
 
-The Smart Home IoT Platform network architecture provides secure and reliable communication between cloud services and local IoT devices.
+The Smart Home IoT Platform network architecture provides secure, reliable, and scalable communication between cloud services and local IoT devices.
 
-Its modular design supports future expansion while maintaining a clear separation between internet-facing services and the private home network.
+Its hybrid architecture, static IP management, secure communication model, and modular design establish a strong foundation for future expansion into local automation, monitoring, and intelligent home management.
