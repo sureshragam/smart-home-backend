@@ -6,7 +6,7 @@
 
 The Smart Home IoT Platform follows a modular, layered architecture designed to support scalability, maintainability, and future expansion.
 
-The platform integrates a React-based web application, a Spring Boot backend, a MySQL database, and ESP32-based IoT devices to provide centralized monitoring and management of smart home devices.
+The platform integrates a React-based web application, a Spring Boot backend, a MySQL database, and ESP32-based IoT devices to provide centralized monitoring, device management, project investment tracking, and future home automation capabilities.
 
 The architecture emphasizes separation of concerns, modular development, secure communication, and extensibility for future IoT capabilities.
 
@@ -28,12 +28,13 @@ The primary architectural goals of the platform are:
 
 # 3. High-Level Architecture
 
-The Smart Home IoT Platform consists of four major layers:
+The Smart Home IoT Platform consists of five major layers:
 
 - Presentation Layer
 - Application Layer
 - Data Layer
 - IoT Layer
+- Infrastructure Layer
 
 The interaction between these layers is illustrated in the System Architecture Diagram.
 
@@ -47,12 +48,15 @@ The Presentation Layer consists of the React-based web dashboard.
 
 Responsibilities include:
 
-- Displaying dashboard statistics
-- Managing devices
-- Viewing activities
-- Monitoring system health
-- Displaying analytics
-- Managing future automation rules
+- Dashboard overview
+- Device Management
+- Activity Monitoring
+- Health Monitoring
+- Project Investment Management
+- Analytics Dashboard
+- Notification Center
+- Automation Management
+- System Settings
 
 The frontend communicates with the backend exclusively through REST APIs.
 
@@ -71,8 +75,10 @@ Its responsibilities include:
 - Device communication
 - Activity processing
 - Health monitoring
+- Project investment management
 - Future authentication
 - Future automation processing
+- Future notification processing
 
 The backend follows a layered architecture consisting of:
 
@@ -82,6 +88,18 @@ The backend follows a layered architecture consisting of:
 - Mappers
 - Repositories
 - Entities
+
+The application is organized into independent modules:
+
+- Dashboard
+- Device
+- Activity
+- Sensor
+- Health
+- Investment
+- Authentication *(Planned)*
+- Automation *(Planned)*
+- Notification *(Planned)*
 
 Detailed package information is documented in **Backend Architecture**.
 
@@ -95,10 +113,12 @@ It stores application data including:
 
 - Devices
 - Activities
-- Health metrics
-- Future automation rules
-- Future user accounts
-- Future notifications
+- Health Metrics
+- Sensor Readings
+- Project Investments
+- Future Automation Rules
+- Future User Accounts
+- Future Notifications
 
 Data access is performed using Spring Data JPA and Hibernate.
 
@@ -108,14 +128,14 @@ Data access is performed using Spring Data JPA and Hibernate.
 
 The IoT Layer consists of ESP32-based smart devices connected to the home network.
 
-Current devices include:
+### Current Devices
 
 - ESP32
 - ESP32-CAM
 - PIR Motion Sensor
 - Relay Module
 
-Future devices may include:
+### Future Devices
 
 - Temperature Sensors
 - Humidity Sensors
@@ -126,13 +146,15 @@ Future devices may include:
 
 IoT devices communicate with the backend using HTTP-based REST APIs over Wi-Fi.
 
+Future versions may support MQTT for asynchronous communication.
+
 ---
 
 # 8. Infrastructure Layer
 
 The platform is deployed on cloud infrastructure.
 
-Current infrastructure includes:
+### Current Infrastructure
 
 - AWS EC2
 - Apache Tomcat
@@ -141,13 +163,15 @@ Current infrastructure includes:
 - GitHub
 - GitHub Projects
 
-Future infrastructure enhancements include:
+### Planned Infrastructure
 
 - Mini PC Home Server
 - Local DNS
 - Docker
 - MQTT Broker
 - Monitoring Stack
+- Grafana
+- Prometheus
 
 ---
 
@@ -157,11 +181,12 @@ The platform follows a request-response communication model.
 
 Typical communication flow:
 
-1. An ESP32 device sends sensor data or heartbeat information.
-2. The backend validates and processes the request.
-3. Data is stored in the database.
-4. The frontend retrieves updated information through REST APIs.
-5. Dashboard components display the latest system status.
+1. ESP32 devices collect sensor data or detect events.
+2. Devices send REST API requests to the backend.
+3. Spring Boot validates and processes requests.
+4. Business logic updates the database.
+5. React Dashboard requests updated information.
+6. Dashboard displays the latest system state.
 
 Future versions will also support WebSocket-based real-time communication.
 
@@ -169,7 +194,7 @@ Future versions will also support WebSocket-based real-time communication.
 
 # 10. Architectural Principles
 
-The platform follows the following software architecture principles:
+The platform follows the following software architecture principles.
 
 ## Layered Architecture
 
@@ -185,7 +210,7 @@ Business logic, presentation, persistence, and infrastructure are isolated from 
 
 ## Modular Design
 
-Features are organized into independent modules to simplify maintenance and future expansion.
+Each feature is developed as an independent module to improve maintainability and scalability.
 
 ---
 
@@ -197,13 +222,13 @@ Communication between frontend, backend, and IoT devices is performed using REST
 
 ## Scalability
 
-The architecture supports adding new devices, sensors, and application modules without major structural changes.
+New devices, sensors, business modules, and automation capabilities can be added without major architectural changes.
 
 ---
 
 ## Maintainability
 
-The codebase follows clean architecture principles, documentation standards, and Agile development practices.
+The codebase follows clean architecture principles, documentation standards, coding conventions, and Agile development practices.
 
 ---
 
@@ -213,10 +238,11 @@ The architecture is designed to support future growth by allowing:
 
 - Additional IoT devices
 - Multiple sensor types
-- Automation workflows
+- Home automation workflows
 - User authentication
 - Notification services
 - Analytics modules
+- Project investment analytics
 - Mobile applications
 - AI-powered automation
 
@@ -236,6 +262,7 @@ The platform roadmap includes several architectural enhancements:
 - Docker Deployment
 - Local DNS
 - Monitoring Stack
+- Project Investment Analytics
 - Mobile Application
 - AI-powered Smart Home Features
 
@@ -250,11 +277,13 @@ The following diagrams provide additional details about the system architecture.
 - High-Level System Architecture
 - Backend Component Diagram
 - Database ER Diagram
-- Network Topology
 - Deployment Diagram
+- Network Topology
 - Authentication Sequence Diagram
 - Device Registration Sequence Diagram
-- Dashboard Data Flow
+- Device Heartbeat Sequence Diagram
+- Motion Event Sequence Diagram
+- Dashboard Request Flow Diagram
 
 All architecture diagrams are maintained in the `docs/diagrams` directory.
 
@@ -264,4 +293,4 @@ All architecture diagrams are maintained in the `docs/diagrams` directory.
 
 The Smart Home IoT Platform is designed as a modular, scalable, and maintainable system capable of supporting current smart home functionality while providing a strong architectural foundation for future enhancements.
 
-Its layered architecture, standardized communication model, and extensible design enable continuous evolution through planned development sprints without requiring significant redesign.
+Its layered architecture, standardized communication model, modular design, and extensible architecture enable continuous evolution through planned development sprints without requiring significant redesign.
