@@ -68,17 +68,25 @@ public class DashboardService {
 		                            ReadingType.PRESSURE)
 		                    .map(SensorReading::getValue)
 		                    .orElse(null);
-		    Boolean door_status = sensorReadingRepository
+		    Boolean dooStatus = sensorReadingRepository
                     .findTopByReadingTypeOrderByReadingTimeDesc(
                             ReadingType.DOOR_STATE)
                     .map(r -> Double.compare(r.getValue(), 1.0) == 0)
                     .orElse(null);
 		    
+		    Double airQuality =
+		            sensorReadingRepository
+		                    .findTopByReadingTypeOrderByReadingTimeDesc(
+		                            ReadingType.AIR_QUALITY)
+		                    .map(SensorReading::getValue)
+		                    .orElse(null);
+		    
 		return EnvironmentResponse.builder()
 				.temperature(temperature)
 				.humidity(humidity)
 				.pressure(pressure)
-				.DoorStatus(door_status)
+				.doorStatus(dooStatus)
+				.airQuality(airQuality)
 				.build();
 		
 	}

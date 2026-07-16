@@ -23,7 +23,9 @@ public class EnvironmentResponse {
 
     private Double pressure;
     
-    private Boolean DoorStatus;
+    private Boolean doorStatus;
+    
+    private Double airQuality;
 
     private LocalDateTime lastUpdated;
 

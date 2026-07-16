@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.suresh.smarthome.auth.dto.request.LoginRequest;
 import com.suresh.smarthome.auth.dto.request.RegisterRequest;
-import com.suresh.smarthome.auth.dto.response.AuthMeResponse;
-import com.suresh.smarthome.auth.dto.response.LoginResponse;
 import com.suresh.smarthome.auth.dto.response.RegisterResponse;
 import com.suresh.smarthome.common.exception.ResourceNotFoundException;
 import com.suresh.smarthome.security.jwt.JwtService;
