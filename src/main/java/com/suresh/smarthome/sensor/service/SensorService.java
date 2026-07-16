@@ -13,6 +13,10 @@ import com.suresh.smarthome.common.exception.ResourceNotFoundException;
 import com.suresh.smarthome.common.util.DateTimeUtil;
 import com.suresh.smarthome.device.entity.Device;
 import com.suresh.smarthome.device.repository.DeviceRepository;
+import com.suresh.smarthome.notification.constant.NotificationConstants;
+import com.suresh.smarthome.notification.enums.NotificationPriority;
+import com.suresh.smarthome.notification.enums.NotificationType;
+import com.suresh.smarthome.notification.service.NotificationService;
 import com.suresh.smarthome.sensor.dto.request.AddSensorRequest;
 import com.suresh.smarthome.sensor.dto.request.SensorReadingRequest;
 import com.suresh.smarthome.sensor.dto.response.AddSensorResponse;
@@ -33,6 +37,7 @@ public class SensorService {
     private final SensorRepository sensorRepository;
     private final SensorReadingRepository sensorReadingRepository;
     private final DeviceRepository deviceRepository;
+    private final NotificationService notificationService;
 
     public List<SensorReadingResponse> getAllSensorReadings() {
 
@@ -55,7 +60,6 @@ public class SensorService {
 
         LocalDateTime now = DateTimeUtil.now();
 
-        // Update heartbeat
         sensor.setLastSeen(now);
         sensor.setStatus(SensorStatus.ACTIVE);
 
@@ -71,6 +75,8 @@ public class SensorService {
                 .build();
 
         SensorReading savedReading = sensorReadingRepository.save(reading);
+
+        checkNotificationRules(savedReading);
 
         return SensorReadingMapper.toResponse(savedReading);
     }
@@ -144,5 +150,60 @@ public class SensorService {
                 request.getType().name(),
                 device.getLocation().name(),
                 nextSequence);
+    }
+
+    private void checkNotificationRules(SensorReading reading) {
+
+        switch (reading.getReadingType()) {
+
+            case TEMPERATURE ->
+                checkTemperature(reading);
+
+            case HUMIDITY ->
+                checkHumidity(reading);
+
+            case PRESSURE ->
+                checkPressure(reading);
+
+            default -> {
+            }
+        }
+    }
+
+    private void checkTemperature(SensorReading reading) {
+
+        if (reading.getValue() <= NotificationConstants.HIGH_TEMPERATURE_THRESHOLD) {
+            return;
+        }
+
+        Sensor sensor = reading.getSensor();
+
+        Device device = sensor.getDevice();
+
+        notificationService.createNotification(
+                NotificationType.TEMPERATURE,
+                NotificationPriority.HIGH,
+                "High Temperature",
+                String.format(
+                        "Temperature in %s reached %.1f°C.",
+                        device.getLocation(),
+                        reading.getValue()),
+                device.getDeviceCode(),
+                sensor.getSensorCode(),
+                device.getName(),
+                reading.getValue(),
+                reading.getUnit());
+    }
+
+    private void checkHumidity(SensorReading reading) {
+
+        // Future implementation
+
+    }
+
+    private void checkPressure(SensorReading reading) {
+
+        // Future implementation
+
     }
 }

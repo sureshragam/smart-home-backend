@@ -12,6 +12,7 @@ public enum SensorType {
     SMOKE,
     WATER_LEAK,
     LIGHT,
-    SOUND
+    SOUND,
+    AIR_QUALITY,
 
 }

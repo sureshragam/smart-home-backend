@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suresh.smarthome.dashboard.dto.response.DashboardResponse;
+import com.suresh.smarthome.dashboard.dto.response.EnvironmentResponse;
 import com.suresh.smarthome.dashboard.service.DashboardService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,5 +36,12 @@ public class DashboardController {
     public DashboardResponse getDashboardSummary() {
         return dashboardService.getDashboardSummary();
     }
+    
+    @GetMapping("/environment")
+    public EnvironmentResponse getEnvironmentSummary() {
+        return dashboardService.getEnvironmentSummary();
+    }
+    
+
 
 }

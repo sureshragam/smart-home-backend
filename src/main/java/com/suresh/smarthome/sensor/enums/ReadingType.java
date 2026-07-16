@@ -17,6 +17,7 @@ public enum ReadingType {
     POWER,
     ENERGY,
     BATTERY,
-    SIGNAL_STRENGTH
+    SIGNAL_STRENGTH,
+    AIR_QUALITY,
 
 }
