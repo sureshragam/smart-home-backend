@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.suresh.smarthome.common.exception.ResourceNotFoundException;
+import com.suresh.smarthome.notification.constant.NotificationConstants;
 import com.suresh.smarthome.notification.entity.Notification;
 import com.suresh.smarthome.notification.enums.NotificationPriority;
 import com.suresh.smarthome.notification.enums.NotificationStatus;
@@ -35,15 +36,22 @@ public class NotificationService {
             UnitType unit)
     {
     	
-    	Optional<Notification> existingNotification =
+    	Optional<Notification> latestNotification =
     	        notificationRepository
-    	                .findFirstByStatusAndTypeAndSensorCodeOrderByNotificationTimeDesc(
-    	                        NotificationStatus.UNREAD,
+    	                .findFirstByTypeAndSensorCodeOrderByNotificationTimeDesc(
     	                        type,
     	                        sensorCode);
 
-    	if (existingNotification.isPresent()) {
-    	    return existingNotification.get();
+    	if (latestNotification.isPresent()) {
+
+    	    Notification existing = latestNotification.get();
+
+    	    LocalDateTime nextAllowedNotificationTime =
+    	            existing.getNotificationTime().plusHours(NotificationConstants.TEMPERATURE_NOTIFICATION_COOLDOWN_HOURS);
+
+    	    if (LocalDateTime.now().isBefore(nextAllowedNotificationTime)) {
+    	        return existing;
+    	    }
     	}
     	
         Notification notification = Notification.builder()

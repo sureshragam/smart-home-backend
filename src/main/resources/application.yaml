@@ -10,5 +10,5 @@ app:
     retention-days: 90
 
 jwt:
-  secret: 9f3b0c7e2d1a8b5f6e9c4a7d8b1e3f5c9a2d6e8f1b4c7d9e0a3b6f8c1d2e5a7
-  expiration: 86400000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:86400000}

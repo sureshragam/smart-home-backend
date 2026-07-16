@@ -19,8 +19,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
             NotificationStatus status);
 
     long countByStatus(NotificationStatus status);
-    Optional<Notification> findFirstByStatusAndTypeAndSensorCodeOrderByNotificationTimeDesc(
-            NotificationStatus status,
+    
+    Optional<Notification> findFirstByTypeAndSensorCodeOrderByNotificationTimeDesc(
             NotificationType type,
             String sensorCode);
 
