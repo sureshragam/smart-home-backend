@@ -2,7 +2,7 @@ package com.suresh.smarthome.sensor.dto.response;
 
 import java.time.LocalDateTime;
 
-import com.suresh.smarthome.device.entity.Device;
+import com.suresh.smarthome.device.dto.response.DeviceSummaryResponse;
 import com.suresh.smarthome.sensor.enums.SensorStatus;
 import com.suresh.smarthome.sensor.enums.SensorType;
 
@@ -23,7 +23,7 @@ public class SensorResponse {
 	private SensorType type;
 	private SensorStatus status;
 	private Integer pinNumber;
-	private Device device;
+	private DeviceSummaryResponse device;
 	private LocalDateTime lastSeen;
     private String manufacturer;
     private String model;
