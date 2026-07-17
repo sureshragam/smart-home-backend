@@ -20,8 +20,9 @@ import com.suresh.smarthome.user.entity.Role;
 import com.suresh.smarthome.user.enums.RoleType;
 import com.suresh.smarthome.user.repository.AppUserRepository;
 import com.suresh.smarthome.user.repository.RoleRepository;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -48,29 +49,31 @@ public class AuthService {
     @Value("${jwt.expiration}")
     private int expiration;
 
-    public String login(LoginRequest request,HttpServletResponse response) {
+    public String login(LoginRequest request, HttpServletResponse response) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()));
+    authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                    request.getEmail(),
+                    request.getPassword()));
 
-        UserDetails user =
-                customUserDetailsService.loadUserByUsername(
-                        request.getEmail());
+    UserDetails user =
+            customUserDetailsService.loadUserByUsername(
+                    request.getEmail());
 
-        String token =
-                jwtService.generateToken(user);
-        
-        Cookie cookie = new Cookie("access_token",token);
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(expiration);
-        cookie.setPath("/");
-        cookie.setSecure(true);
-        response.addCookie(cookie);
+    String token = jwtService.generateToken(user);
 
-        return "Login Successfull";
-    }
+    ResponseCookie cookie = ResponseCookie.from("access_token", token)
+            .httpOnly(true)
+            .secure(true)
+            .sameSite("None")
+            .path("/")
+            .maxAge(expiration)
+            .build();
+
+    response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+    return "Login Successful";
+}
     
     @Transactional
     public RegisterResponse register(RegisterRequest request) {
@@ -99,15 +102,19 @@ public class AuthService {
                 .build();
     }
     
-    public String logout (HttpServletResponse response) {
-    	Cookie cookie = new Cookie("access_token", "");
+    public String logout(HttpServletResponse response) {
 
-    	cookie.setHttpOnly(true);
-    	cookie.setSecure(true);
-    	cookie.setPath("/");
-    	cookie.setMaxAge(0);
-    	response.addCookie(cookie);
-    	return "Logout Successfull";
-    }
+    ResponseCookie cookie = ResponseCookie.from("access_token", "")
+            .httpOnly(true)
+            .secure(true)
+            .sameSite("None")
+            .path("/")
+            .maxAge(0)
+            .build();
+
+    response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+    return "Logout Successful";
+}
 
 }
