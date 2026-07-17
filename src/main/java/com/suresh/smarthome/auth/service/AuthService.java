@@ -71,6 +71,7 @@ public class AuthService {
             .build();
 
     response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+    System.out.println("Using ResponseCookie login()");
 
     return "Login Successful";
 }
