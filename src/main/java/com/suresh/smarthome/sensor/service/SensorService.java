@@ -21,9 +21,11 @@ import com.suresh.smarthome.sensor.dto.request.AddSensorRequest;
 import com.suresh.smarthome.sensor.dto.request.SensorReadingRequest;
 import com.suresh.smarthome.sensor.dto.response.AddSensorResponse;
 import com.suresh.smarthome.sensor.dto.response.SensorReadingResponse;
+import com.suresh.smarthome.sensor.dto.response.SensorResponse;
 import com.suresh.smarthome.sensor.entity.Sensor;
 import com.suresh.smarthome.sensor.entity.SensorReading;
 import com.suresh.smarthome.sensor.enums.SensorStatus;
+import com.suresh.smarthome.sensor.mapper.SensorMapper;
 import com.suresh.smarthome.sensor.mapper.SensorReadingMapper;
 import com.suresh.smarthome.sensor.repository.SensorReadingRepository;
 import com.suresh.smarthome.sensor.repository.SensorRepository;
@@ -206,4 +208,12 @@ public class SensorService {
         // Future implementation
 
     }
+
+	public List<SensorResponse> getSensors() {
+		List<SensorResponse> sensors = sensorRepository.findAll()
+		        .stream()
+		        .map(SensorMapper::toSensorResponse)
+		        .toList();
+		return sensors;
+	}
 }
