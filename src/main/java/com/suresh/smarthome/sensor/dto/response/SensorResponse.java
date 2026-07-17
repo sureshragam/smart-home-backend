@@ -18,6 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SensorResponse {
+	private Long id;
 	private String name;
 	private String sensorCode;
 	private SensorType type;

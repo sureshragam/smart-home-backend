@@ -7,6 +7,7 @@ import com.suresh.smarthome.sensor.entity.Sensor;
 public class SensorMapper {
 	public static SensorResponse toSensorResponse(Sensor request) {
 		return SensorResponse.builder()
+				.id(request.getId())
 				.name(request.getName())
 				.sensorCode(request.getSensorCode())
 				.type(request.getType())
