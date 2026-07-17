@@ -30,23 +30,37 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "target/*.jar"
+          source: "target/smart-home-backend-0.0.1-SNAPSHOT.jar"
           target: "/home/ubuntu/"
 
-      - name: Restart Smart Home Service
+      - name: Deploy and Restart
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "Restarting Smart Home Backend..."
+            set -e
+
+            echo "=== Deploying Smart Home Backend ==="
+
+            echo "Copying latest JAR..."
+            cp /home/ubuntu/target/smart-home-backend-0.0.1-SNAPSHOT.jar \
+               /home/ubuntu/smart-home-backend-0.0.1-SNAPSHOT.jar
+
+            echo "Verifying deployed JAR..."
+            ls -lh /home/ubuntu/smart-home-backend-0.0.1-SNAPSHOT.jar
+
+            echo "Restarting service..."
             sudo systemctl restart smart-home
 
             echo "Waiting for application to start..."
             sleep 15
 
-            echo "Service Status:"
-            sudo systemctl status smart-home --no-pager
+            echo "Checking service status..."
+            sudo systemctl is-active smart-home
+
+            echo "Recent logs:"
+            sudo journalctl -u smart-home -n 30 --no-pager
 
             echo "Deployment completed successfully."
