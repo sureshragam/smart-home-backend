@@ -199,7 +199,27 @@ public class SensorService {
 
     private void checkHumidity(SensorReading reading) {
 
-        // Future implementation
+
+        if (reading.getValue() <= NotificationConstants.HIGH_HUMIDITY_THRESHOLD) {
+            return;
+        }
+        Sensor sensor = reading.getSensor();
+
+        Device device = sensor.getDevice();
+        
+        notificationService.createNotification(
+                NotificationType.HUMIDITY,
+                NotificationPriority.HIGH,
+                "High Humidity",
+                String.format(
+                		"Humidity in %s reached %.1f%%.",
+                        device.getLocation(),
+                        reading.getValue()),
+                device.getDeviceCode(),
+                sensor.getSensorCode(),
+                device.getName(),
+                reading.getValue(),
+                reading.getUnit());
 
     }
 
