@@ -25,7 +25,7 @@ public class AddDeviceRequest {
 
 	private String name;
 	
-	@NotBlank(message="Device type is required")
+	@NotNull(message="Device type is required")
 	private DeviceType type;
 	
 	@NotNull(message="Device location is required")

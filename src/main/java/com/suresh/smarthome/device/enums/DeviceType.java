@@ -4,9 +4,9 @@ public enum DeviceType {
 
     ESP32,
     ESP32_CAM,
-    PIR_SENSOR,
-    TEMPERATURE_SENSOR,
-    HUMIDITY_SENSOR,
+    ARDUINO_UNO,
+    ARDUINO_NANO,
+    RASPBERRY_PI,
     SMART_SWITCH
 
 }
