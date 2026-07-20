@@ -44,6 +44,7 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
+                                "/api/devices/register",
                                 "/api/devices/heartbeat",
                                 "/api/activities/motion",
                                 "/api/sensor-readings"
