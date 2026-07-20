@@ -7,6 +7,7 @@ public enum DeviceType {
     ARDUINO_UNO,
     ARDUINO_NANO,
     RASPBERRY_PI,
-    SMART_SWITCH
+    SMART_SWITCH,
+    ANDROID_CAMERA,
 
 }

@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suresh.smarthome.device.dto.request.AddDeviceRequest;
 import com.suresh.smarthome.device.dto.request.DeviceHeartbeatRequest;
+import com.suresh.smarthome.device.dto.request.RegisterDeviceRequest;
 import com.suresh.smarthome.device.dto.response.DeviceResponse;
 import com.suresh.smarthome.device.service.DeviceService;
 
@@ -65,6 +67,14 @@ public class DeviceController {
     	DeviceResponse response = deviceService.addDevice(device);
     	
     	return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+    
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void registerDevice(
+            @Valid @RequestBody RegisterDeviceRequest request) {
+
+        deviceService.registerDevice(request);
     }
     
 

@@ -11,6 +11,7 @@ import com.suresh.smarthome.common.exception.ResourceNotFoundException;
 import com.suresh.smarthome.common.util.DateTimeUtil;
 import com.suresh.smarthome.device.dto.request.AddDeviceRequest;
 import com.suresh.smarthome.device.dto.request.DeviceHeartbeatRequest;
+import com.suresh.smarthome.device.dto.request.RegisterDeviceRequest;
 import com.suresh.smarthome.device.dto.response.DeviceResponse;
 import com.suresh.smarthome.device.entity.Device;
 import com.suresh.smarthome.device.enums.DeviceStatus;
@@ -61,6 +62,25 @@ public class DeviceService {
     	Device savedDevice = deviceRepository.save(newDevice);
     	return DeviceMapper.toResponse(savedDevice);
     	
+    }
+    
+    public void registerDevice(RegisterDeviceRequest request) {
+
+        Device device = deviceRepository
+                .findByDeviceCode(request.getDeviceCode())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                String.format(
+                                        "Device with code '%s' not found.",
+                                        request.getDeviceCode()
+                                )));
+
+        device.setIpAddress(request.getIpAddress());
+        device.setFirmwareVersion(request.getFirmwareVersion());
+        device.setStatus(DeviceStatus.ONLINE);
+        device.setLastSeen(DateTimeUtil.now());
+
+        deviceRepository.save(device);
     }
     
     private String generateDeviceCode(AddDeviceRequest request) {
