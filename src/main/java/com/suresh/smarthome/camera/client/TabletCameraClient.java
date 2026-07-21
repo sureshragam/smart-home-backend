@@ -13,7 +13,7 @@ public class TabletCameraClient {
 
     private final RestClient restClient = RestClient.create();
 
-    private static final int PORT = 8080;
+    private static final int PORT = 8081;
 
     public CameraStatusResponse getStatus(String ipAddress) {
 
