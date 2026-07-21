@@ -82,6 +82,18 @@ public class DeviceService {
 
         deviceRepository.save(device);
     }
+    public DeviceResponse getDevice(String deviceCode) {
+
+        Device device = deviceRepository
+                .findByDeviceCode(deviceCode)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                String.format(
+                                        "Device with code '%s' not found.",
+                                        deviceCode)));
+
+        return DeviceMapper.toResponse(device);
+    }
     
     private String generateDeviceCode(AddDeviceRequest request) {
 

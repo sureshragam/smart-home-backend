@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/devices")
@@ -42,6 +43,18 @@ public class DeviceController {
     @GetMapping
     public List<DeviceResponse> getAllDevices() {
         return deviceService.getAllDevices();
+    }
+    
+    @Operation(summary = "Get device by device code")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Device retrieved successfully"),
+        @ApiResponse(responseCode = "404", description = "Device not found")
+    })
+    @GetMapping("/{deviceCode}")
+    public DeviceResponse getDevice(
+            @PathVariable String deviceCode) {
+
+        return deviceService.getDevice(deviceCode);
     }
 
     @Operation(
