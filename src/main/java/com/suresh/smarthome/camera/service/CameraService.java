@@ -19,12 +19,6 @@ public class CameraService {
     private final DeviceRepository deviceRepository;
     private final TabletCameraClient tabletCameraClient;
 
-    public CameraStatusResponse getStatus(String deviceCode) {
-
-        Device device = getDevice(deviceCode);
-
-        return tabletCameraClient.getStatus(device.getIpAddress());
-    }
 
     public String switchCamera(String deviceCode) {
 

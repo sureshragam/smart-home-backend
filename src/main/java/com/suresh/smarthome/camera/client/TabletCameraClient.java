@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 import com.suresh.smarthome.camera.dto.CameraCaptureResponse;
-import com.suresh.smarthome.camera.dto.CameraStatusResponse;
 
 @Component
 public class TabletCameraClient {
@@ -14,14 +13,6 @@ public class TabletCameraClient {
     private final RestClient restClient = RestClient.create();
 
     private static final int PORT = 8081;
-
-    public CameraStatusResponse getStatus(String ipAddress) {
-
-        return restClient.get()
-                .uri("http://" + ipAddress + ":" + PORT + "/camera/status")
-                .retrieve()
-                .body(CameraStatusResponse.class);
-    }
 
     public String switchCamera(String ipAddress) {
 

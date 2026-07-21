@@ -21,14 +21,6 @@ public class CameraController {
 
     private final CameraService cameraService;
 
-    @GetMapping("/{deviceCode}/status")
-    public ResponseEntity<CameraStatusResponse> getStatus(
-            @PathVariable String deviceCode) {
-
-        return ResponseEntity.ok(
-                cameraService.getStatus(deviceCode)
-        );
-    }
 
     @PostMapping("/{deviceCode}/switch")
     public ResponseEntity<String> switchCamera(
